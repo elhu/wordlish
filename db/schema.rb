@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_12_081336) do
+ActiveRecord::Schema.define(version: 2022_01_13_225015) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,13 @@ ActiveRecord::Schema.define(version: 2022_01_12_081336) do
   # Note that some types may not work with other database engines. Be careful if changing database.
   create_enum "game_status", ["ongoing", "done"]
 
+  create_table "foos", force: :cascade do |t|
+    t.string "bar"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bar"], name: "index_foos_on_bar"
+  end
+
   create_table "games", force: :cascade do |t|
     t.string "uuid"
     t.integer "score"
@@ -26,7 +33,7 @@ ActiveRecord::Schema.define(version: 2022_01_12_081336) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["score"], name: "index_games_on_score"
-    t.index ["uuid"], name: "index_games_on_uuid"
+    t.index ["uuid"], name: "index_games_on_uuid", unique: true
   end
 
 end
