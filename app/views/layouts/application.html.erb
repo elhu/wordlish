@@ -8,11 +8,14 @@
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.3.0/dist/flowbite.min.css" />
+    <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="bg-gray-900 dark">
     <main class="container mx-auto mt-28 px-5 flex">
       <%= yield %>
     </main>
+    <script src="https://unpkg.com/@themesberg/flowbite@1.3.0/dist/flowbite.bundle.js"></script>
   </body>
 </html>
