@@ -1,0 +1,67 @@
+<%= turbo_frame_tag dom_id(game), class: 'flex' do %>
+<div>
+  <h1 class="text-5xl dark:text-white"><%= game.uuid %></h1>
+  <p class="text-lg dark:text-white">
+    Score: <span class="font-extrabold"><%= game.score %></span>
+  </p>
+</div>
+<div class="flex flex-col ml-4">
+  <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div class="inline-block py-2 min-w-full sm:px-6 lg:px-8">
+      <div class="overflow-hidden shadow-md sm:rounded-lg">
+        <table class="min-w-full">
+          <thead class="bg-gray-50 dark:bg-gray-700">
+            <tr>
+              <th
+                scope="col"
+                class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                colspan="2"
+              >
+                Settings
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <td
+                class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              >
+                Words to guess
+              </td>
+              <td
+                class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400"
+              >
+                <%= game.max_words %>
+              </td>
+            </tr>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <td
+                class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              >
+                Word length
+              </td>
+              <td
+                class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400"
+              >
+                <%= game.word_length %>
+              </td>
+            </tr>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <td
+                class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              >
+                Attempts per word
+              </td>
+              <td
+                class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400"
+              >
+                <%= game.max_attempts %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
