@@ -3,9 +3,9 @@ class CreateGames < ActiveRecord::Migration[7.0]
     create_enum :game_status, ["ongoing", "done"]
 
     create_table :games do |t|
-      t.string :uuid
-      t.integer :score
-      t.enum :status, enum_type: :game_status, default: "ongoing"
+      t.string :uuid, null: false
+      t.integer :score, null: false, default: 0
+      t.enum :status, enum_type: :game_status, default: "ongoing", null: false
 
       t.timestamps
     end

@@ -15,4 +15,22 @@ RSpec.describe Game, type: :model do
         .with_prefix(:status)
     end
   end
+
+  describe 'uuid' do
+    describe 'when saving a new record' do
+      let(:game) { described_class.new }
+
+      it 'generates a uuid' do
+        expect { game.save! }.to change(game, :uuid)
+      end
+    end
+
+    describe 'when saving an existing record' do
+      let(:game) { described_class.create! }
+
+      it 'does not change the uuid' do
+        expect { game.save }.not_to change(game, :uuid)
+      end
+    end
+  end
 end

@@ -24,6 +24,9 @@ Style/GlobalStdStream:
 RSpec/NamedSubject:
   Enabled: false
 
+Style/NumericPredicate:
+  Enabled: false
+
 Style/StringLiterals:
   Enabled: false
 
