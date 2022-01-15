@@ -27,7 +27,8 @@ RSpec.describe 'games', type: :request do
     end
 
     context 'with valid params' do
-      let(:config) { { max_attempts: 4, word_length: 3, max_words: 10 } }
+      let(:seed) { "LMdflkdSrlcz6RkO2OFvfQ==\n" }
+      let(:config) { { max_attempts: 4, word_length: 3, max_words: 10, seed: seed } }
 
       it 'creates a Game with the correct configuration' do
         post '/games', params: { game: config }.to_json, headers: headers
@@ -36,6 +37,7 @@ RSpec.describe 'games', type: :request do
         expect(game.max_attempts).to eq(4)
         expect(game.word_length).to eq(3)
         expect(game.max_words).to eq(10)
+        expect(game.seed).to eq(seed)
       end
 
       it 'returns the configuration in the response' do
@@ -72,6 +74,9 @@ RSpec.describe 'games', type: :request do
           * 25 words to guess
           * words are 5 letters long
           * you get 6 attempts per words
+
+          If you improved your guessing program and want to replay a past game,
+          save the seed from that game and reuse it when creating a new one!
         DESC
         parameter name: :game, in: :body, schema: {
           properties: {
@@ -93,6 +98,10 @@ RSpec.describe 'games', type: :request do
                   minimum: 10,
                   maximum: 50,
                   type: :int
+                },
+                seed: {
+                  description: "Seed to use to generate the word list (to repeat previous games)",
+                  type: :string
                 },
                 word_length: {
                   description: "Length of the words the guess",
@@ -118,6 +127,11 @@ RSpec.describe 'games', type: :request do
                          example: "sOqmDethcUawYzhIprwk.",
                          type: :string
                        },
+                       seed: {
+                         description: "Seed used to generate the word list, use that to play the same game again",
+                         example: "LMdflkdSrlcz6RkO2OFvfQ==\n",
+                         type: :string
+                       },
                        max_attempts: {
                          description: "Number of attempts to guess each word",
                          example: 6,
@@ -134,7 +148,7 @@ RSpec.describe 'games', type: :request do
                          type: :integer
                        }
                      },
-                     required: [:uuid, :max_attempts, :max_words, :word_length]
+                     required: [:uuid, :seed, :max_attempts, :max_words, :word_length]
                    }
                  },
                  required: [:game]

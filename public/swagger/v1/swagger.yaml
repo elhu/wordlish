@@ -15,6 +15,9 @@ paths:
         * 25 words to guess
         * words are 5 letters long
         * you get 6 attempts per words
+
+        If you improved your guessing program and want to replay a past game,
+        save the seed from that game and reuse it when creating a new one!
       parameters: []
       responses:
         '201':
@@ -31,6 +34,13 @@ paths:
                       uuid:
                         description: UUID of your game, use that to play!
                         example: sOqmDethcUawYzhIprwk.
+                        type: string
+                      seed:
+                        description: Seed used to generate the word list, use that
+                          to play the same game again
+                        example: 'LMdflkdSrlcz6RkO2OFvfQ==
+
+                          '
                         type: string
                       max_attempts:
                         description: Number of attempts to guess each word
@@ -73,6 +83,10 @@ paths:
                       minimum: 10
                       maximum: 50
                       type: int
+                    seed:
+                      description: Seed to use to generate the word list (to repeat
+                        previous games)
+                      type: string
                     word_length:
                       description: Length of the words the guess
                       default: 5

@@ -24,6 +24,6 @@ class GamesController < ApplicationController
   end
 
   def permitted_params
-    params[:game].present? ? params.require(:game).permit(:max_words, :max_attempts, :word_length) : {}
+    params[:game].present? ? params.require(:game).permit(:max_words, :max_attempts, :word_length, :seed) : {}
   end
 end
