@@ -92,4 +92,8 @@ RSpec.describe Game, type: :model do
       it { is_expected.to eq(5) }
     end
   end
+
+  describe 'words' do
+    it { is_expected.to have_many(:words).dependent(:destroy) }
+  end
 end

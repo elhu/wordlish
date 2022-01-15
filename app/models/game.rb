@@ -30,6 +30,8 @@ class Game < ApplicationRecord
 
   before_validation :set_seed, :set_uuid
 
+  has_many :words, dependent: :destroy
+
   private
 
   def set_seed
