@@ -129,7 +129,7 @@ RSpec.describe 'games', type: :request do
                        },
                        seed: {
                          description: "Seed used to generate the word list, use that to play the same game again",
-                         example: "LMdflkdSrlcz6RkO2OFvfQ==\n",
+                         example: "LMdflkdSrlcz6RkO2OFvfQ==",
                          type: :string
                        },
                        max_attempts: {

@@ -38,9 +38,7 @@ paths:
                       seed:
                         description: Seed used to generate the word list, use that
                           to play the same game again
-                        example: 'LMdflkdSrlcz6RkO2OFvfQ==
-
-                          '
+                        example: LMdflkdSrlcz6RkO2OFvfQ==
                         type: string
                       max_attempts:
                         description: Number of attempts to guess each word
@@ -56,6 +54,7 @@ paths:
                         type: integer
                     required:
                     - uuid
+                    - seed
                     - max_attempts
                     - max_words
                     - word_length

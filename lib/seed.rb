@@ -2,7 +2,7 @@ class Seed
   MAX_INT = 2**64 - 1
 
   def self.generate(seed = Random.new_seed)
-    [seed.divmod(MAX_INT).reverse.pack("Q*")].pack("m")
+    [seed.divmod(MAX_INT).reverse.pack("Q*")].pack("m").strip
   end
 
   def self.unpack(seed)
