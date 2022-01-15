@@ -23,6 +23,26 @@ RSpec.describe Game, type: :model do
     end
   end
 
+  describe 'seed' do
+    it { is_expected.to have_readonly_attribute(:seed) }
+
+    describe 'when saving a new record' do
+      let(:game) { described_class.new }
+
+      it 'generates a seed' do
+        expect { game.save! }.to change(game, :seed)
+      end
+    end
+
+    describe 'when saving an existing record' do
+      let(:game) { described_class.create! }
+
+      it 'does not change the seed' do
+        expect { game.save }.not_to change(game, :seed)
+      end
+    end
+  end
+
   describe 'score' do
     it { is_expected.to validate_presence_of(:score) }
     it { is_expected.to validate_numericality_of(:score) }

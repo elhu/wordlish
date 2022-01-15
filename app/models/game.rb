@@ -1,12 +1,17 @@
+require 'seed'
 require 'uuid'
 
 class Game < ApplicationRecord
+  SEED_SALT = Seed.unpack(Rails.application.credentials.random_seed)
+
   broadcasts
 
   enum status: { ongoing: "ongoing", done: "done" }, _prefix: true
 
   validates :uuid, presence: true, uniqueness: true
   validates :status, presence: true
+  validates :seed, presence: true
+
   validates :score,
             presence: true,
             numericality: { only_integer: true }
@@ -21,11 +26,15 @@ class Game < ApplicationRecord
             presence: true,
             numericality: { only_integer: true, greater_than_or_equal_to: 4, less_than_or_equal_to: 10 }
 
-  attr_readonly :uuid
+  attr_readonly :seed, :uuid
 
-  before_validation :set_uuid
+  before_validation :set_seed, :set_uuid
 
   private
+
+  def set_seed
+    self.seed ||= Seed.generate
+  end
 
   def set_uuid
     self.uuid ||= UUID.generate
