@@ -12,6 +12,9 @@ AllCops:
 
   NewCops: enable
 
+Lint/AmbiguousOperatorPrecedence:
+  Enabled: false
+
 Naming/MemoizedInstanceVariableName:
   Enabled: false
 
