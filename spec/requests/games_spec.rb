@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'swagger_helper'
 
 RSpec.describe 'games', type: :request do
   describe 'POST /games' do
@@ -56,6 +56,91 @@ RSpec.describe 'games', type: :request do
         expect do
           post '/games', params: { game: config }.to_json, headers: headers
         end.not_to change(Game, :count)
+      end
+    end
+  end
+
+  describe 'OpenAPI documentation' do
+    path '/games' do
+      post('Create a new game') do
+        tags 'Games'
+        consumes 'application/json'
+        produces 'application/json'
+        description <<~DESC
+          This endpoint creates a new game.
+          If no parameters are given, the following configuration is used:
+          * 25 words to guess
+          * words are 5 letters long
+          * you get 6 attempts per words
+        DESC
+        parameter name: :game, in: :body, schema: {
+          properties: {
+            game: {
+              type: :object,
+              description: "Configuration for the game",
+              optional: true,
+              properties: {
+                max_attempts: {
+                  description: "Number of attempts to guess each word",
+                  default: 6,
+                  minimum: 4,
+                  maximum: 10,
+                  type: :int
+                },
+                max_words: {
+                  description: "Number of words to guess",
+                  default: 25,
+                  minimum: 10,
+                  maximum: 50,
+                  type: :int
+                },
+                word_length: {
+                  description: "Length of the words the guess",
+                  default: 5,
+                  minimum: 3,
+                  maximum: 16,
+                  type: :int
+                }
+              }
+            }
+          }
+        }
+
+        response(201, 'game created') do
+          schema type: :object,
+                 properties: {
+                   game: {
+                     type: :object,
+                     description: "Game object with configuration",
+                     properties: {
+                       uuid: {
+                         description: "UUID of your game, use that to play!",
+                         example: "sOqmDethcUawYzhIprwk.",
+                         type: :string
+                       },
+                       max_attempts: {
+                         description: "Number of attempts to guess each word",
+                         example: 6,
+                         type: :integer
+                       },
+                       max_words: {
+                         description: "Number of words to guess",
+                         example: 25,
+                         type: :integer
+                       },
+                       word_length: {
+                         description: "Length of the words the guess",
+                         example: 5,
+                         type: :integer
+                       }
+                     },
+                     required: [:uuid, :max_attempts, :max_words, :word_length]
+                   }
+                 },
+                 required: [:game]
+          let(:game) { { max_words: 10 } }
+          run_test!
+        end
       end
     end
   end

@@ -12,6 +12,9 @@ AllCops:
 
   NewCops: enable
 
+Naming/MemoizedInstanceVariableName:
+  Enabled: false
+
 Style/Documentation:
   Enabled: false
 

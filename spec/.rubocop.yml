@@ -1,7 +1,16 @@
 inherit_from: ../.rubocop.yml
 
+Layout/LineLength:
+  Max: 200
+
 Metrics/BlockLength:
   Enabled: false
 
-Layout/LineLength:
-  Max: 200
+RSpec/EmptyExampleGroup:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Max: 15
+
+RSpec/MultipleExpectations:
+  Max: 5

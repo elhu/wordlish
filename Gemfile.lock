@@ -1,3 +1,21 @@
+GIT
+  remote: https://github.com/rswag/rswag
+  revision: a813b63bcc64e9ea49f6416ab4fe023b7f090ad8
+  glob: rswag-api/*.gemspec
+  specs:
+    rswag-api (0.0.0)
+      railties (>= 3.1, < 7.1)
+
+GIT
+  remote: https://github.com/rswag/rswag
+  revision: a813b63bcc64e9ea49f6416ab4fe023b7f090ad8
+  glob: rswag-specs/*.gemspec
+  specs:
+    rswag-specs (0.0.0)
+      activesupport (>= 3.1, < 7.1)
+      json-schema (~> 2.2)
+      railties (>= 3.1, < 7.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -66,6 +84,8 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
+    addressable (2.8.0)
+      public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.2)
     bindex (0.8.1)
     bootsnap (1.9.4)
@@ -93,6 +113,8 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    json-schema (2.8.1)
+      addressable (>= 2.4)
     loofah (2.13.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -132,6 +154,7 @@ GEM
       activesupport (>= 7.0.0.alpha2)
       rack
       railties (>= 7.0.0.alpha2)
+    public_suffix (4.0.6)
     puma (5.5.2)
       nio4r (~> 2.0)
     racc (1.6.0)
@@ -248,6 +271,8 @@ DEPENDENCIES
   rails (~> 7.0.1)
   redis (~> 4.0)
   rspec-rails (~> 5.0.0)
+  rswag-api!
+  rswag-specs!
   rubocop-rails
   rubocop-rspec
   shoulda-matchers (~> 5.0)
