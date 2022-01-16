@@ -105,5 +105,15 @@ RSpec.describe Game, type: :model do
         game.create_words!
       end.to change(Word, :count).by(game.max_words)
     end
+
+    it 'sets the first word as ongoing' do
+      game.create_words!
+      expect(game.words.first.status).to eq("ongoing")
+    end
+
+    it 'sets the other words as not_started' do
+      game.create_words!
+      expect(game.words[1..].map(&:status)).to all(eq('not_started'))
+    end
   end
 end
