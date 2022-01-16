@@ -1,8 +1,11 @@
 class Word < ApplicationRecord
   belongs_to :game
 
+  enum status: { not_started: "not_started", ongoing: "ongoing", done: "done" }, _prefix: true
+
   validates :to_guess, presence: true
   validates :score, presence: true, numericality: { only_integer: true }
+  validates :status, presence: true
 
   validate :word_length_must_match_game
 

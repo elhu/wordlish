@@ -14,6 +14,17 @@ RSpec.describe Word, type: :model do
     it { is_expected.to validate_numericality_of(:score) }
   end
 
+  describe 'status' do
+    it { is_expected.to validate_presence_of(:status) }
+    it { is_expected.to define_enum_for(:status).with_values({ not_started: "not_started", ongoing: "ongoing", done: "done" }).backed_by_column_of_type(:enum).with_prefix(:status) }
+
+    describe 'default value' do
+      subject { described_class.create.status }
+
+      it { is_expected.to eq("not_started") }
+    end
+  end
+
   describe 'to_guess' do
     it { is_expected.to validate_presence_of(:to_guess) }
 
