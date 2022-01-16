@@ -1,1 +1,16 @@
 /* Application styles */
+.collapsible .toggle::before {
+  content: "+";
+}
+
+.collapsible.open .toggle::before {
+  content: "–";
+}
+
+.collapsible .content {
+  display: none;
+}
+
+.collapsible.open .content {
+  display: block;
+}

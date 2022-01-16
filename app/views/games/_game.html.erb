@@ -1,82 +1,82 @@
 <%= turbo_frame_tag dom_id(game), class: 'flex' do %>
-<div>
-  <h1 class="text-5xl dark:text-white"><%= game.uuid %></h1>
-  <p class="text-lg dark:text-white">
-    Score: <span class="font-extrabold"><%= game.score %></span>
-  </p>
-</div>
-<div class="flex flex-col ml-4">
-  <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-    <div class="inline-block py-2 min-w-full sm:px-6 lg:px-8">
-      <div class="overflow-hidden shadow-md sm:rounded-lg">
-        <table class="min-w-full">
-          <thead class="bg-gray-50 dark:bg-gray-700">
-            <tr>
-              <th
-                scope="col"
-                class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
-                colspan="2"
-              >
-                Settings
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              <td
-                class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                Words to guess
-              </td>
-              <td
-                class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400"
-              >
-                <%= game.max_words %>
-              </td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              <td
-                class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                Word length
-              </td>
-              <td
-                class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400"
-              >
-                <%= game.word_length %>
-              </td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              <td
-                class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                Attempts per word
-              </td>
-              <td
-                class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400"
-              >
-                <%= game.max_attempts %>
-              </td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              <td
-                class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                Seed
-              </td>
-              <td
-                class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400" data-controller="clipboard"
-              >
-                <span data-clipboard-target="source"><%= game.seed %></span>
-                <button data-action="clipboard#copy" type="button" data-copy-state="copy" class="items-center pl-2 py-1 text-xs font-medium text-gray-900 bg-white border border-gray-200 rounded-lg copy-to-clipboard-button hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-                  <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+  <div>
+    <h1 class="text-5xl dark:text-white"><%= game.uuid %></h1>
+    <p class="text-lg dark:text-white">
+      Score: <span class="font-extrabold"><%= game.score %></span>
+    </p>
+  </div>
+  <div class="flex flex-col ml-4">
+    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="inline-block py-2 min-w-full sm:px-6 lg:px-8">
+        <div class="overflow-hidden shadow-md sm:rounded-lg">
+          <table class="min-w-full">
+            <thead class="bg-gray-50 dark:bg-gray-700">
+              <tr>
+                <th
+                  scope="col"
+                  class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                  colspan="2"
+                >
+                  Settings
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td
+                  class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                >
+                  Words to guess
+                </td>
+                <td
+                  class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400"
+                >
+                  <%= game.max_words %>
+                </td>
+              </tr>
+              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td
+                  class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                >
+                  Word length
+                </td>
+                <td
+                  class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400"
+                >
+                  <%= game.word_length %>
+                </td>
+              </tr>
+              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td
+                  class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                >
+                  Attempts per word
+                </td>
+                <td
+                  class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400"
+                >
+                  <%= game.max_attempts %>
+                </td>
+              </tr>
+              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td
+                  class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                >
+                  Seed
+                </td>
+                <td
+                  class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400" data-controller="clipboard"
+                >
+                  <span data-clipboard-target="source"><%= game.seed %></span>
+                  <button data-action="clipboard#copy" type="button" data-copy-state="copy" class="items-center pl-2 py-1 text-xs font-medium text-gray-900 bg-white border border-gray-200 rounded-lg copy-to-clipboard-button hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
-</div>
 <% end %>

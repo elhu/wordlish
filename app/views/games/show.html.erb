@@ -1,2 +1,7 @@
 <%= turbo_stream_from @game %>
 <%= render 'game', game: @game %>
+<div>
+  <% @game.words.each.with_index do |word, idx| %>
+    <%= render 'word', word: word, index: idx + 1 %>
+  <% end %>
+</div>

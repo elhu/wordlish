@@ -1,0 +1,20 @@
+<div data-controller="collapse" data-collapse-target="foo" class="border border-gray-200 rounded-lg dark:bg-gray-900 dark:border-gray-600 collapsible">
+  <div class="border border-t-0 border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-600 p-4">
+    <span class="text-xl font-bold dark:text-white">
+      <%= "Game #{index}/#{word.game.max_words}" %>
+    </span>
+    <button data-action="collapse#toggle" class="text-xl font-bold dark:text-white float-right toggle">
+    </button>
+  </div>
+  <div class="content">
+    <% word.game.max_attempts.times do %>
+      <div class="flex justify-center">
+        <% word.to_guess.length.times do %>
+          <div class="mx-8 my-2 w-24 h-24 flex items-center text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-600 text-8xl dark:text-white justify-center align-middle">
+            &nbsp;
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
