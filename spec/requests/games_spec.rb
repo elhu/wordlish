@@ -40,6 +40,12 @@ RSpec.describe 'games', type: :request do
         expect(game.seed).to eq(seed)
       end
 
+      it 'creates matching words for the game' do
+        expect do
+          post '/games', params: { game: config }.to_json, headers: headers
+        end.to change(Word, :count).by(10)
+      end
+
       it 'returns the configuration in the response' do
         post '/games', params: { game: config }.to_json, headers: headers
         expect(JSON.parse(response.body)['game']).to include(config.stringify_keys)
@@ -58,6 +64,12 @@ RSpec.describe 'games', type: :request do
         expect do
           post '/games', params: { game: config }.to_json, headers: headers
         end.not_to change(Game, :count)
+      end
+
+      it 'does not create words for the game' do
+        expect do
+          post '/games', params: { game: config }.to_json, headers: headers
+        end.not_to change(Word, :count)
       end
     end
   end

@@ -95,25 +95,40 @@ RSpec.describe Game, type: :model do
 
   describe 'words' do
     it { is_expected.to have_many(:words).dependent(:destroy) }
-  end
 
-  describe 'create_words!' do
-    let(:game) { described_class.create(max_words: 10) }
+    context 'when updating an existing record' do
+      let!(:game) { described_class.create! }
 
-    it 'saves the right number of words after creation' do
-      expect do
-        game.create_words!
-      end.to change(Word, :count).by(game.max_words)
+      it 'does not add new words' do
+        expect do
+          game.save
+        end.not_to change(Word, :count)
+      end
     end
 
-    it 'sets the first word as ongoing' do
-      game.create_words!
-      expect(game.words.first.status).to eq("ongoing")
-    end
+    context 'when creating a new record' do
+      let(:game) { described_class.new(max_words: 10) }
 
-    it 'sets the other words as not_started' do
-      game.create_words!
-      expect(game.words[1..].map(&:status)).to all(eq('not_started'))
+      it 'saves the right number of words' do
+        expect do
+          game.save
+        end.to change(Word, :count).by(game.max_words)
+      end
+
+      it 'saves the words of the right length' do
+        game.save
+        expect(game.words.map(&:to_guess).map(&:length)).to all(eq(game.word_length))
+      end
+
+      it 'sets the first word as ongoing' do
+        game.save
+        expect(game.words.first.status).to eq("ongoing")
+      end
+
+      it 'sets the other words as not_started' do
+        game.save
+        expect(game.words[1..].map(&:status)).to all(eq('not_started'))
+      end
     end
   end
 end

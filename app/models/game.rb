@@ -29,15 +29,17 @@ class Game < ApplicationRecord
 
   before_validation :set_seed, :set_uuid
 
+  after_create :create_words!
+
   has_many :words, dependent: :destroy
+
+  private
 
   def create_words!
     WordPicker.new(self).pick_words.each.with_index do |to_guess, i|
       words.create!(to_guess: to_guess, status: i == 0 ? 'ongoing' : 'not_started')
     end
   end
-
-  private
 
   def set_seed
     self.seed ||= Seed.generate
