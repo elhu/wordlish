@@ -9,6 +9,8 @@ class Word < ApplicationRecord
 
   validate :word_length_must_match_game
 
+  attr_readonly :to_guess
+
   def word_length_must_match_game
     return unless (to_guess || "").length != game&.word_length
 

@@ -27,6 +27,7 @@ RSpec.describe Word, type: :model do
 
   describe 'to_guess' do
     it { is_expected.to validate_presence_of(:to_guess) }
+    it { is_expected.to have_readonly_attribute(:to_guess) }
 
     context 'with a word the wrong length' do
       subject { game.words.build(to_guess: 'word') }
