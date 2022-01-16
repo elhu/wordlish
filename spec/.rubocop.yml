@@ -14,3 +14,6 @@ RSpec/ExampleLength:
 
 RSpec/MultipleExpectations:
   Max: 5
+
+Style/OpenStructUse:
+  Enabled: false
