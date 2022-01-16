@@ -1,9 +1,8 @@
 require 'seed'
 require 'uuid'
+require 'word_picker'
 
 class Game < ApplicationRecord
-  SEED_SALT = Seed.unpack(Rails.application.credentials.random_seed)
-
   broadcasts
 
   enum status: { ongoing: "ongoing", done: "done" }, _prefix: true
@@ -31,6 +30,12 @@ class Game < ApplicationRecord
   before_validation :set_seed, :set_uuid
 
   has_many :words, dependent: :destroy
+
+  def create_words!
+    WordPicker.new(self).pick_words.each do |to_guess|
+      words.create!(to_guess: to_guess)
+    end
+  end
 
   private
 

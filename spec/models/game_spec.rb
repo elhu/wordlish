@@ -96,4 +96,14 @@ RSpec.describe Game, type: :model do
   describe 'words' do
     it { is_expected.to have_many(:words).dependent(:destroy) }
   end
+
+  describe 'create_words!' do
+    let(:game) { described_class.create(max_words: 10) }
+
+    it 'saves the right number of words after creation' do
+      expect do
+        game.create_words!
+      end.to change(Word, :count).by(game.max_words)
+    end
+  end
 end
