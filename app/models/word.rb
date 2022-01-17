@@ -1,5 +1,6 @@
 class Word < ApplicationRecord
   belongs_to :game
+  has_many :attempts, dependent: :destroy
 
   enum status: { not_started: "not_started", ongoing: "ongoing", done: "done" }, _prefix: true
 

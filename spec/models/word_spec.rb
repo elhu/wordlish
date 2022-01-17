@@ -5,6 +5,10 @@ RSpec.describe Word, type: :model do
 
   let(:game) { Game.create }
 
+  describe 'attempts' do
+    it { is_expected.to have_many(:attempts).dependent(:destroy) }
+  end
+
   describe 'game' do
     it { is_expected.to belong_to(:game) }
   end
