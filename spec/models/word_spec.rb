@@ -39,7 +39,13 @@ RSpec.describe Word, type: :model do
       it { is_expected.not_to be_valid }
     end
 
-    context 'with a word the correct length' do
+    context 'with a word that does not exist' do
+      subject { game.words.build(to_guess: "abcde") }
+
+      it { is_expected.not_to be_valid }
+    end
+
+    context 'with a word that exists and is the correct length' do
       subject { game.words.build(to_guess: 'sword') }
 
       it { is_expected.to be_valid }

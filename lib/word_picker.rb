@@ -6,7 +6,15 @@ class WordPicker
     Rails.root.join("public/words.txt.gz")
   ).readlines.map(&:strip).group_by(&:length).freeze
 
+  WORDS_SET = Set.new(Zlib::GzipReader.open(
+    Rails.root.join("public/words.txt.gz")
+  ).readlines.map(&:strip)).freeze
+
   attr_accessor :config
+
+  def self.exists?(word)
+    WORDS_SET.include?(word)
+  end
 
   def initialize(config)
     self.config = config
