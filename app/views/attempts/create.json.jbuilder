@@ -9,11 +9,11 @@ json.game do
       json.letters attempt.guess.each_char.with_index.to_a do |letter, i|
         json.letter letter
         if @word.to_guess[i] == letter
-          json.state 'correct'
+          json.result 'correct'
         elsif @word.to_guess.include?(letter)
-          json.state 'wrong_position'
+          json.result 'wrong_position'
         else
-          json.state 'not_in_word'
+          json.result 'not_in_word'
         end
       end
     end

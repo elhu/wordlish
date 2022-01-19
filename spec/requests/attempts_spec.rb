@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 require 'swagger_helper'
-=======
-require 'rails_helper'
->>>>>>> 2e8289d25803f436a9e1cccd718ae2e0d5963a9f
 
 RSpec.describe "Attempts", type: :request do
   describe "POST /games/:id/attempts" do
