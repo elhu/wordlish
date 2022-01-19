@@ -33,6 +33,12 @@ class Game < ApplicationRecord
 
   has_many :words, dependent: :destroy
 
+  def compute_score
+    words.eager_load(:attempts).inject(0) do |memo, word|
+      memo + word.compute_score(max_attempts)
+    end
+  end
+
   private
 
   def create_words!

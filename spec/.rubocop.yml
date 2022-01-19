@@ -15,5 +15,8 @@ RSpec/ExampleLength:
 RSpec/MultipleExpectations:
   Max: 5
 
+RSpec/NestedGroups:
+  Max: 10
+
 Style/OpenStructUse:
   Enabled: false

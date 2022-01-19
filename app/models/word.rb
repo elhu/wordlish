@@ -14,6 +14,14 @@ class Word < ApplicationRecord
 
   attr_readonly :to_guess
 
+  def compute_score(max_attempts)
+    score = max_attempts - attempts.to_a.count
+    score += 10 if attempts.last&.guess == to_guess
+    score
+  end
+
+  private
+
   def word_length_must_match_game
     return unless (to_guess || "").length != game&.word_length
 
