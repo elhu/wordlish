@@ -11,7 +11,7 @@ class AttemptsController < ApplicationController
         @word = result.payload[:attempt].word
         format.json { render :create, status: :created }
       else
-        format.json { render json: result.errors, status: :unprocessable_entity }
+        format.json { render json: { errors: result.errors }, status: :unprocessable_entity }
       end
     end
   end
