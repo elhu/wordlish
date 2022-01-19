@@ -14,3 +14,7 @@
 .collapsible.open .content {
   display: block;
 }
+
+thead.settings {
+  cursor: pointer;
+}
