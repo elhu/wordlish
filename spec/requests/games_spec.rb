@@ -167,6 +167,19 @@ RSpec.describe 'games', type: :request do
           let(:game) { { max_words: 10 } }
           run_test!
         end
+
+        response(422, 'Invalid game config') do
+          schema type: :object,
+                 properties: {
+                   errors: {
+                     type: :object,
+                     description: "Info about the errors"
+                   }
+                 },
+                 required: [:errors]
+
+          let(:game) { { max_words: 11 } }
+        end
       end
     end
   end
