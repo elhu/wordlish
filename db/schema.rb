@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_17_115642) do
+ActiveRecord::Schema.define(version: 2022_01_20_173641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2022_01_17_115642) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.enum "status", default: "not_started", null: false, enum_type: "word_status"
+    t.integer "position", null: false
     t.index ["game_id"], name: "index_words_on_game_id"
   end
 

@@ -43,7 +43,7 @@ class Game < ApplicationRecord
 
   def create_words!
     WordPicker.new(self).pick_words.each.with_index do |to_guess, i|
-      words.create!(to_guess: to_guess, status: i == 0 ? 'ongoing' : 'not_started')
+      words.create!(to_guess: to_guess, status: i == 0 ? 'ongoing' : 'not_started', position: i)
     end
   end
 

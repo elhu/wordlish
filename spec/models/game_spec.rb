@@ -129,6 +129,11 @@ RSpec.describe Game, type: :model do
         game.save
         expect(game.words[1..].map(&:status)).to all(eq('not_started'))
       end
+
+      it 'sets the correct positions on the word' do
+        game.save
+        expect(game.words.pluck(:position)).to eq((0..9).to_a)
+      end
     end
   end
 end

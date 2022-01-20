@@ -13,6 +13,11 @@ RSpec.describe Word, type: :model do
     it { is_expected.to belong_to(:game) }
   end
 
+  describe 'position' do
+    it { is_expected.to validate_presence_of(:position) }
+    it { is_expected.to validate_numericality_of(:position) }
+  end
+
   describe 'score' do
     it { is_expected.to validate_presence_of(:score) }
     it { is_expected.to validate_numericality_of(:score) }
@@ -46,7 +51,7 @@ RSpec.describe Word, type: :model do
     end
 
     context 'with a word that exists and is the correct length' do
-      subject { game.words.build(to_guess: 'sword') }
+      subject { game.words.build(to_guess: 'sword', position: 1) }
 
       it { is_expected.to be_valid }
     end

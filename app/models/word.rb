@@ -7,6 +7,7 @@ class Word < ApplicationRecord
   enum status: { not_started: "not_started", ongoing: "ongoing", done: "done" }, _prefix: true
 
   validates :to_guess, presence: true
+  validates :position, presence: true, numericality: { only_integer: true }
   validates :score, presence: true, numericality: { only_integer: true }
   validates :status, presence: true
 
