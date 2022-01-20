@@ -8,7 +8,13 @@ class Attempt < ApplicationRecord
 
   attr_readonly :guess
 
+  after_commit :broadcast_update
+
   private
+
+  def broadcast_update
+    broadcast_update_to(word, target: "word_#{word.id}_attempt_#{position}", locals: { word: word, attempt: self })
+  end
 
   def guess_length_must_match_game
     return unless (guess || "").length != word&.game&.word_length

@@ -1,6 +1,8 @@
 require 'word_picker'
 
 class Word < ApplicationRecord
+  broadcasts_to ->(word) { word.game }
+
   belongs_to :game
   has_many :attempts, dependent: :destroy
 
