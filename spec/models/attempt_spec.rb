@@ -14,10 +14,15 @@ RSpec.describe Attempt, type: :model do
     end
 
     context 'with a word the correct length' do
-      subject { word.attempts.build(guess: 'sword') }
+      subject { word.attempts.build(guess: 'sword', position: 0) }
 
       it { is_expected.to be_valid }
     end
+  end
+
+  describe 'position' do
+    it { is_expected.to validate_presence_of(:position) }
+    it { is_expected.to validate_numericality_of(:position) }
   end
 
   describe 'word' do

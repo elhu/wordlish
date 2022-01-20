@@ -7,7 +7,7 @@ class CreateAttempt
   end
 
   def call
-    @attempt = word.attempts.build(guess: guess)
+    @attempt = word.attempts.build(guess: guess, position: word.attempts.maximum(:position) + 1|| 0)
     return ServiceResponse.new(success: false, errors: attempt.errors) unless attempt.save
 
     if should_close_word?
