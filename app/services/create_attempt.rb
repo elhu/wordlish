@@ -31,7 +31,7 @@ class CreateAttempt
 
   def close_word!
     word.update(status: 'done')
-    game.words.where(status: 'not_started').first&.update(status: 'ongoing')
+    game.words.where(status: 'not_started').order(position: :asc).first&.update(status: 'ongoing')
   end
 
   def next_pos

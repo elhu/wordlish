@@ -2,7 +2,11 @@
 <div data-controller="collapse" class="border border-gray-200 rounded-lg dark:bg-gray-900 dark:border-gray-600 collapsible <%= "open" if word.status == "ongoing" %>">
   <div data-action="click->collapse#toggle" class="border border-t-0 border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-600 p-4">
     <span class="text-xl font-bold dark:text-white">
-      <%= heading_text(word) %>
+      Word <%= word.position + 1 %>/<%= word.game.max_words %>
+      <% if word.status == "done" %>
+        &nbsp;-&nbsp;<span class="font-mono font-normal"><%= word.to_guess %></span>
+        &nbsp;-&nbsp;<%= word_guessed?(word) ? '✅' : '❌' %>
+      <% end %>
     </span>
     <button class="text-xl font-bold dark:text-white float-right toggle">
     </button>

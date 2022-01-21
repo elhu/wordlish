@@ -1,7 +1,7 @@
 <%= turbo_stream_from @game %>
 <%= render 'game', game: @game %>
 <div>
-  <% @game.words.order(id: :asc).each.with_index do |word, idx| %>
+  <% @game.words.order(position: :asc).each.with_index do |word, idx| %>
     <%= turbo_stream_from word %>
     <%= render 'words/word', word: word, index: idx + 1 %>
   <% end %>

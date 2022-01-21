@@ -2,8 +2,8 @@
   <div class="flex justify-center">
     <% word.to_guess.length.times do |idx| %>
       <% letter = attempt.guess.present? ? attempt.guess[idx] : " " %>
-      <div class="mx-0.5 my-1 letter flex items-center text-gray-900 bg-white border border-gray-200  dark:border-gray-600  dark:text-white justify-center align-middle <%= letter_class(word, letter, idx) %>">
-        <%= letter.upcase %>
+      <div class="font-mono mx-0.5 my-1 letter flex items-center text-gray-900 bg-white border border-gray-200  dark:border-gray-600  dark:text-white justify-center align-middle <%= letter_class(word, letter, idx) %>">
+        <%= letter %>
       </div>
     <% end %>
   </div>
