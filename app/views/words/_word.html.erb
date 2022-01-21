@@ -2,7 +2,7 @@
 <div data-controller="collapse" class="border border-gray-200 rounded-lg dark:bg-gray-900 dark:border-gray-600 collapsible <%= "open" if word.status == "ongoing" %>">
   <div data-action="click->collapse#toggle" class="border border-t-0 border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-600 p-4">
     <span class="text-xl font-bold dark:text-white">
-      <%= "Word #{word.position+1}/#{word.game.max_words}" %>
+      <%= heading_text(word) %>
     </span>
     <button class="text-xl font-bold dark:text-white float-right toggle">
     </button>
