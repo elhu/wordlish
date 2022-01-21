@@ -49,6 +49,7 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 gem 'rswag-api', git: 'https://github.com/rswag/rswag', glob: 'rswag-api/*.gemspec'
+gem 'redlock', '~> 1.2.2'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

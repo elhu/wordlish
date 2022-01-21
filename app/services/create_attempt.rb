@@ -7,6 +7,14 @@ class CreateAttempt
   end
 
   def call
+    REDLOCK.lock!("lock:game:#{game.id}", 1_000) { create_attempt }
+  rescue Redlock::LockError
+    ServiceResponse.new(success: false, errors: { game: ["locked, you can only play 1 attempt at a time per game"] })
+  end
+
+  private
+
+  def create_attempt
     @attempt = word.attempts.build(guess: guess, position: next_pos)
     return ServiceResponse.new(success: false, errors: attempt.errors) unless attempt.save
 
@@ -17,12 +25,6 @@ class CreateAttempt
     ServiceResponse.new(success: true, payload: { attempt: attempt })
   end
 
-  private
-
-  def next_pos
-    (word.attempts.maximum(:position) || 0) + 1
-  end
-
   def close_game!
     game.update(status: 'done', score: game.compute_score)
   end
@@ -30,6 +32,10 @@ class CreateAttempt
   def close_word!
     word.update(status: 'done')
     game.words.where(status: 'not_started').first&.update(status: 'ongoing')
+  end
+
+  def next_pos
+    (word.attempts.maximum(:position) || 0) + 1
   end
 
   def should_close_game?
