@@ -16,7 +16,7 @@
       <%= render 'attempts/attempt', word: word, attempt: attempt %>
     <% end %>
     <% (word.attempts.count + 1).upto(word.game.max_attempts) do |pos| %>
-      <%= render 'attempts/attempt', word: word, attempt: OpenStruct.new(position: pos) %>
+      <%= render 'attempts/attempt', word: word, attempt: OpenStruct.new(position: pos, guess: ' ' * word.to_guess.length) %>
     <% end %>
   </div>
 </div>

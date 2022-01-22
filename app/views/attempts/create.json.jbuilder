@@ -6,15 +6,9 @@ json.game do
     json.success @word.attempts.last.guess == @word.to_guess
     json.attempts @word.attempts do |attempt|
       json.guess attempt.guess
-      json.letters attempt.guess.each_char.with_index.to_a do |letter, i|
+      json.letters attempt_result(attempt.guess, @word.to_guess).each do |letter, result|
         json.letter letter
-        if @word.to_guess[i] == letter
-          json.result 'correct'
-        elsif @word.to_guess.include?(letter)
-          json.result 'wrong_position'
-        else
-          json.result 'not_in_word'
-        end
+        json.result result
       end
     end
   end
